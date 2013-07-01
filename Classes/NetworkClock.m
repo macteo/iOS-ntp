@@ -129,12 +129,12 @@
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
         CFHostRef ntpHostName = CFHostCreateWithName (kCFAllocatorDefault, (__bridge CFStringRef)ntpDomainName);
         if (ntpHostName == nil) {
-            LogInProduction(@"CFHostCreateWithName ntpHost <nil>");
+            // LogInProduction(@"CFHostCreateWithName ntpHost <nil>");
             continue;                                           // couldn't create 'host object' ...
         }
 
         if (!CFHostStartInfoResolution (ntpHostName, kCFHostAddresses, &nameError)) {
-            LogInProduction(@"CFHostStartInfoResolution error %li", nameError.error);
+            // LogInProduction(@"CFHostStartInfoResolution error %li", nameError.error);
             CFRelease(ntpHostName);
             continue;                                           // couldn't start resolution ...
         }
@@ -142,13 +142,13 @@
         CFArrayRef ntpHostAddrs = CFHostGetAddressing (ntpHostName, &nameFound);
 
         if (!nameFound) {
-            LogInProduction(@"CFHostGetAddressing: NOT resolved");
+            // LogInProduction(@"CFHostGetAddressing: NOT resolved");
             CFRelease(ntpHostName);
             continue;                                           // resolution failed ...
         }
 
         if (ntpHostAddrs == nil) {
-            LogInProduction(@"CFHostGetAddressing: no addresses resolved");
+            // LogInProduction(@"CFHostGetAddressing: no addresses resolved");
             CFRelease(ntpHostName);
             continue;                                           // NO addresses were resolved ...
         }
@@ -216,8 +216,7 @@
   ┃ associationTrue -- notification from a 'truechimer' association of a trusty offset               ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
 - (void) associationTrue:(NSNotification *) notification {
-    NTP_Logging(@"*** true association: %@ (%i left)",
-                    [notification object], [timeAssociations count]);
+    // NTP_Logging(@"*** true association: %@ (%i left)", [notification object], [timeAssociations count]);
     [self offsetAverage];
 }
 
@@ -228,7 +227,7 @@
 - (void) associationFake:(NSNotification *) notification {
     if ([timeAssociations count] > 8) {
         NetAssociation *    association = [notification object];
-        NTP_Logging(@"*** false association: %@ (%i left)", association, [timeAssociations count]);
+        // NTP_Logging(@"*** false association: %@ (%i left)", association, [timeAssociations count]);
         [timeAssociations removeObject:association];
         [association finish];
         association = nil;
@@ -239,7 +238,7 @@
   ┃ applicationBack -- catch the notification when the application goes into the background          ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
 - (void) applicationBack:(NSNotification *) notification {
-    LogInProduction(@"*** application -> Background");
+    // LogInProduction(@"*** application -> Background");
 //  [self finishAssociations];
 }
 
@@ -247,7 +246,7 @@
   ┃ applicationFore -- catch the notification when the application comes out of the background       ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
 - (void) applicationFore:(NSNotification *) notification {
-    LogInProduction(@"*** application -> Foreground");
+    // LogInProduction(@"*** application -> Foreground");
 //  [self enableAssociations];
 }
 

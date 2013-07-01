@@ -102,7 +102,7 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
     [repeatingTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:
                                  (double)(5.0 * (float)rand()/(float)RAND_MAX)]];
 
-    LogInProduction(@"enabled: [%@]", server);
+    // LogInProduction(@"enabled: [%@]", server);
 }
 
 /*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -111,7 +111,7 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
 - (void) finish {
     [repeatingTimer setFireDate:[NSDate distantFuture]];
 
-    LogInProduction(@"stopped: [%@]", server);
+    // LogInProduction(@"stopped: [%@]", server);
 }
 
 #pragma mark                        N e t w o r k • T r a n s a c t i o n s
@@ -175,7 +175,7 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
 
 - (void) evaluatePacket {
     double          packetOffset = 0.0;                     // initial untrustworthy offset
-    NTP_Logging(@"%@", [self prettyPrintPacket]);
+   // NTP_Logging(@"%@", [self prettyPrintPacket]);
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │ determine the quality of this particular time ..                                                 │
   │ .. if max_error is less than 50mS (and not zero) AND                                             │
@@ -196,9 +196,9 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
     fifoQueue[fifoIndex % 8] = packetOffset;                // store offset
     fifoIndex++;                                            // rotate index
 
-    NTP_Logging(@"[%@] index=%i {%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f}", server,
-                fifoIndex % 8, fifoQueue[0], fifoQueue[1], fifoQueue[2], fifoQueue[3], 
-                               fifoQueue[4], fifoQueue[5], fifoQueue[6], fifoQueue[7]);
+//    NTP_Logging(@"[%@] index=%i {%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f,%5.3f}", server,
+//                fifoIndex % 8, fifoQueue[0], fifoQueue[1], fifoQueue[2], fifoQueue[3], 
+//                               fifoQueue[4], fifoQueue[5], fifoQueue[6], fifoQueue[7]);
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
   │ look at the (up to eight) offsets in the fifo and and count 'good', 'fail' and 'not used yet'    │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
@@ -225,8 +225,8 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
     if (good > 0 || fail > 3) {
         _offset = _offset / good;
         
-        NTP_Logging(@"[%@] index=%i {good: %i; fail: %i; none: %i} offset=%3.1f", server,
-                    fifoIndex, good, fail, none, _offset * 1000.0);
+//        NTP_Logging(@"[%@] index=%i {good: %i; fail: %i; none: %i} offset=%3.1f", server,
+//                    fifoIndex, good, fail, none, _offset * 1000.0);
         
         if (good+none < 5) {                                // four or more 'fails'
             _trusty = FALSE;  
@@ -246,8 +246,8 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
     if (stratum == 1) pollingIntervalIndex = 5;             // 72 seconds
     if (stratum == 2) pollingIntervalIndex = 6;             // 35 seconds
     if ([repeatingTimer timeInterval] != pollIntervals[pollingIntervalIndex]) {
-        NTP_Logging(@"[%@] poll interval adusted: %3.1f >> %3.1f", server,
-                    [repeatingTimer timeInterval], pollIntervals[pollingIntervalIndex]);
+//        NTP_Logging(@"[%@] poll interval adusted: %3.1f >> %3.1f", server,
+//                    [repeatingTimer timeInterval], pollIntervals[pollingIntervalIndex]);
         [repeatingTimer invalidate];
         repeatingTimer = nil;
         repeatingTimer = [NSTimer scheduledTimerWithTimeInterval:pollIntervals[pollingIntervalIndex]
@@ -320,7 +320,7 @@ static double ntpDiffSeconds(struct ntpTimestamp * start, struct ntpTimestamp * 
 }
 
 - (void) onUdpSocketDidClose:(AsyncUdpSocket *) sock  {
-    LogInProduction(@"Socket closed : [%@]", server);
+    // LogInProduction(@"Socket closed : [%@]", server);
 }
 
 #pragma mark                        T i m e • C o n v e r t e r s

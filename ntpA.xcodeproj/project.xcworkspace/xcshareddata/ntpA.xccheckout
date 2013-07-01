@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3492D771-9DFE-408F-8882-66970FE11631</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ntpA</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>22F294A8-F573-416B-AD4C-6773756D5052</key>
+		<string>git://github.com/jessedc/iOS-ntp.git</string>
+		<key>78A34FFC-F56B-492D-AEDC-48EE219CEF80</key>
+		<string>git://github.com/robbiehanson/CocoaAsyncSocket.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ntpA.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>22F294A8-F573-416B-AD4C-6773756D5052</key>
+		<string>../..</string>
+		<key>78A34FFC-F56B-492D-AEDC-48EE219CEF80</key>
+		<string>../../Vendor/CocoaAsyncSocket</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git://github.com/jessedc/iOS-ntp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>22F294A8-F573-416B-AD4C-6773756D5052</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>22F294A8-F573-416B-AD4C-6773756D5052</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-ntp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>78A34FFC-F56B-492D-AEDC-48EE219CEF80</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CocoaAsyncSocket</string>
+		</dict>
+	</array>
+</dict>
+</plist>
